@@ -1,0 +1,42 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav mode="side" [opened]="true" [disableClose]="true">
+    <div class="navigation-title">
+      <h1>Navigation Bar</h1>
+    </div>
+    <div class="navigation-btns">
+      <button class="nav-button" (click)="navigateToInvAdd()">Add Item to Inventory</button>
+      <button class="nav-button" (click)="navigateToListItem()">List Item to Sell</button>
+      <button class="nav-button" (click)="navigateToSellItem()">Sell Item</button>
+      <button class="nav-button" (click)="navigateToPerfMetrics()">Performance Metrics</button>
+      <button class="nav-button" (click)="signOut()">Sign Out</button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <div class="header-container">
+      <h1 class="header-title">Welcome To FlipLedger, {{ user?.user_metadata?.user_name }}</h1>
+      <img [src]="flipSourceLogo" class="header-logo">
+    </div>
+
+    <div class="user-profile-body">
+      <div class="top-ten-items">
+        <h3>Recently Added Items</h3>
+        <ul *ngIf="newTenItems()" class="item-list-unordered">
+          @for(item of newTenItems(); track $index) {
+          <li class="item-list-ordered">{{ item }}</li>
+          }
+        </ul>
+      </div>
+
+      <div class="inventory-value">
+        <h3>Current Total Inventory Value</h3>
+        <div *ngIf="inventoryValue()">
+          <p>{{ inventoryValue().inventory_value | currency: 'USD' }}</p>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+

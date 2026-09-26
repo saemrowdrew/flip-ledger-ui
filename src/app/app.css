@@ -1,0 +1,11 @@
+:host {
+  --navy: #17365D;
+  --green: #5C9830;
+  --ivory: #FFFFF0;
+  --font-mono: "Monaco", monospace;
+  --sidebar-width: 250px;
+}
+
+#root, #app {
+    background-color: var(--ivory);
+}

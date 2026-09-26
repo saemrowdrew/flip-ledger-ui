@@ -1,0 +1,38 @@
+<div class="app-container">
+  <div class="header-container">
+    <p>Performance Metrics</p>
+    <img class="header-logo" [src]="flipLedgerLogo"/>
+  </div>
+  <div>
+    <aside class="side-bar">
+      <div class="nav-bar-title">
+        <h1>Navigation Bar</h1>
+      </div>
+      <div>
+        <button class="back-to-profile" (click)="backToUserProfile()">Back to Profile</button>
+      </div>
+    </aside>
+  </div>
+  <div class="performance-charts">
+    <div class="location-roi-pie-chart">
+      <p-chart type="pie"
+               [data]="platformROIChartData()"
+               [options]="chartOptionsPlatformROI"></p-chart>
+    </div>
+    <div class="category-roi-pie-chart">
+      <p-chart type="pie"
+               [data]="sourceROIData()"
+               [options]="chartOptionsCategoryROI"></p-chart>
+    </div>
+    <div class="source-roi-pie-chart">
+      <p-chart type="pie"
+               [data]="sourceROIData()"
+               [options]="chartOptionsSourceROI"></p-chart>
+    </div>
+    <!--<div class="sell-thru-bar-chart">
+      <p-chart type="bar"
+               [data]="sellThruBarData()"
+               [options]="chartOptionsSellThru"></p-chart>
+    </div>-->
+  </div>
+</div>

@@ -1,0 +1,92 @@
+<mat-sidenav-container class="sidenav-container">
+
+    <mat-sidenav mode="side" [opened]="true" [disableClose]="true">
+        <div class="navigation-title">
+          <h1>Navigation Bar</h1>
+        </div>
+        <div class="navigation-btns">
+          <button class="nav-button" (click)="navigateToInvAdd()">Add Item to Inventory</button>
+          <button class="nav-button" (click)="navigateToListItem()">List Item to Sell</button>
+          <button class="nav-button" (click)="navigateToSellItem()">Sell Item</button>
+          <button class="nav-button" (click)="navigateToPerfMetrics()">Performance Metrics</button>
+          <button class="nav-button" (click)="navigateToProfile()">Back to Profile</button>
+          <button class="nav-button" (click)="signOut()">Sign Out</button>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="main-content">
+      <div class="form-header">
+        <p class="header-title">Add Item To Inventory</p>
+        <img class="header-logo" [src]="flipLedgerLogo" />
+      </div>
+
+      <form class="inventory-add-form" [formGroup]="addInventoryForm">
+
+
+        <mat-form-field class="item-name" appearance="outline">
+          <mat-label>Item Name</mat-label>
+          <input matInput formControlName="itemName" type="text" placeholder="Enter item name">
+        </mat-form-field>
+
+        <mat-form-field class="item-brand" appearance="outline">
+          <mat-label>Item Brand</mat-label>
+          <input matInput formControlName="itemBrand" type="text" placeholder="Enter item brand">
+        </mat-form-field>
+
+        <mat-form-field class="item-category" appearance="outline">
+          <mat-label>Item Category</mat-label>
+          <mat-select formControlName="itemCategory" placeholder="Enter item category">
+            @for (category of addedItemCategory; track category) {
+            <mat-option [value]="category">{{ category }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="item-source" appearance="outline">
+          <mat-label>Sourcing</mat-label>
+          <mat-select formControlName="itemSource" placeholder="Enter sourcing location">
+            @for (option of sourcingOption; track option) {
+            <mat-option [value]="option">{{ option }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="item-purchase-date" appearance="outline">
+          <mat-label>Item Purchase Date</mat-label>
+          <input matInput formControlName="purchaseDate" [matDatepicker]="purchasePicker" (click)="purchasePicker.open()">
+          <mat-datepicker-toggle matIconSuffix [for]="purchasePicker"></mat-datepicker-toggle>
+          <mat-datepicker #purchasePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="item-purchase-price" appearance="outline">
+          <span matTextPrefix>$&nbsp;</span>
+          <mat-label>Purchase Price</mat-label>
+          <input matInput formControlName="purchasePrice" type="number" placeholder="0.00">
+        </mat-form-field>
+
+        <mat-form-field class="item-expected-resale-price" appearance="outline">
+          <span matTextPrefix>$&nbsp;</span>
+          <mat-label>Expected Resale Price</mat-label>
+          <input matInput formControlName="expectedResalePrice" type="number" placeholder="0.00">
+        </mat-form-field>
+
+        <mat-form-field class="item-expected-profit" appearance="outline">
+          <span matTextPrefix>$&nbsp;</span>
+          <mat-label>Expected Profit</mat-label>
+          <input matInput formControlName="expectedProfit" type="number" placeholder="0.00">
+        </mat-form-field>
+
+        <mat-form-field class="item-additional-notes" appearance="outline">
+          <mat-label>Additional Item Notes</mat-label>
+          <input matInput formControlName="additionalNotes" type="text" placeholder="Enter additional item notes">
+        </mat-form-field>
+
+        <div>
+          <button class="add-item-btn" (click)="onSubmit()">Add Item to Inventory</button>
+        </div>
+
+      </form>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>
+

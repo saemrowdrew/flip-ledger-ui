@@ -1,0 +1,115 @@
+:host {
+  --navy: #17365D;
+  --green: #5C9830;
+  --ivory: #FFFFF0;
+  --font-mono: "Monaco", monospace;
+  --sidebar-width: 250px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.sidenav-container {
+  height: 100vh;
+  background-color: var(--ivory);
+}
+
+mat-sidenav {
+  width: var(--sidebar-width);
+  background-color: var(--navy);
+
+  .navigation-title {
+    color: var(--ivory);
+    font-family: var(--font-mono);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .navigation-btns {
+    display: flex;
+    flex-direction: column;
+
+    .nav-button {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--ivory);
+      cursor: pointer;
+      background-color: var(--green);
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+mat-sidenav-content {
+
+  .header-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+
+    .header-title {
+      font-family: var(--font-mono);
+      font-weight: bold; 
+      font-size: 2rem;
+      color: var(--navy);
+      display: flex;
+      justify-content: center;
+      padding-top: 1rem;
+    }
+
+    .header-logo {
+      height: 10rem;
+    }
+  }
+
+  .user-profile-body {
+    display: flex;
+    gap: 5rem;
+    margin-inline: 2rem;
+
+    .item-list-unordered {
+      display: grid;
+      grid-template-rows: auto;
+      color: var(--navy);
+      gap: 1rem;
+
+      .item-list-ordered {
+        font-size: 1rem;
+        font-family: var(--font-mono);
+        color: #17365D;
+        border: 1px solid black;
+        border-width: 2px;
+        padding-inline-start: 2px;
+      }
+    }
+
+    .top-ten-items h3 {
+      font-size: 1.5rem;
+      color: var(--navy);
+      font-family: var(--font-mono);
+    }
+
+    .inventory-value h3 {
+      font-size: 1.5rem;
+      color: var(--navy);
+      font-family: var(--font-mono);
+    }
+
+    .inventory-value p {
+      font-family: var(--font-mono);
+      font-size: 1.5rem;
+      color: var(--navy);
+      text-align: center;
+    }
+  }
+}
+
+
+
+
+

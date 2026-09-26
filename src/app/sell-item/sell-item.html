@@ -1,0 +1,76 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav mode="side" [opened]="true" [disableClose]="true">
+    <div class="navigation-title">
+      <h1>Navigation Bar</h1>
+    </div>
+    <div class="navigation-btns">
+      <button class="nav-button" (click)="navigateToInvAdd()">Add Item to Inventory</button>
+      <button class="nav-button" (click)="navigateToListItem()">List Item to Sell</button>
+      <button class="nav-button" (click)="navigateToSellItem()">Sell Item</button>
+      <button class="nav-button" (click)="navigateToPerfMetrics()">Performance Metrics</button>
+      <button class="nav-button" (click)="navigateToProfile()">Back to Profile</button>
+      <button class="nav-button" (click)="signOut()">Sign Out</button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <div class="sell-item-header">
+      <p class="header-title">Sell Item</p>
+      <img class="header-logo" [src]="flipLedgerLogo" />
+    </div>
+    <mat-table class="sell-item-form" [dataSource]="allListings()">
+
+      <ng-container matColumnDef="item">
+        <mat-header-cell *matHeaderCellDef>Item</mat-header-cell>
+        <mat-cell class="item-sold" *matCellDef="let item">{{ item.item_name }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="sold-platform">
+        <mat-header-cell *matHeaderCellDef>Sold Platfrom</mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <mat-form-field class="sold-platform" appearance="outline">
+            <mat-select [(ngModel)]="item.sold_platform_id" [name]="'sold_platform_id' + item.item_id">
+              <mat-option class="sold-platform" *ngFor="let platform of platforms()" [value]="platform.platform_id">
+                {{ platform.platform_name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="sold-price">
+        <mat-header-cell *matHeaderCellDef>Sold Price</mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <mat-form-field class="sold-price" appearance="outline">
+            <span matTextPrefix>$&nbsp;</span>
+            <input matInput placeholder="{{ item.sold_price }}" [(ngModel)]="item.sold_price" [name]="'sold_price_' + item.item_id">
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="sold-date">
+        <mat-header-cell class="header-title" *matHeaderCellDef>Sold Date</mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <input class="item-date" matInput placeholder="Enter Sold Date" [matDatepicker]="picker" [(ngModel)]="item.sold_date" (click)="picker.open()">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="mark-as-sold">
+        <mat-header-cell *matHeaderCellDef>Mark as Sold</mat-header-cell>
+        <mat-cell *matCellDef="let item">
+          <button class="sell-item-btn" (click)="markAsSold(item)">Mark As Sold</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row class="row-title" *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+    </mat-table>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
